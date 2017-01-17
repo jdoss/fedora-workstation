@@ -1,10 +1,10 @@
 ---
 
 - name: group install ansible dependanices
-  raw: dnf groupinstall "Ansible node"
+  raw: dnf groupinstall "Ansible node" -y
 
 - name: gather facts
-  setup: 
+  setup:
 
 - name: detect ansible_system_vendor
   set_fact:
