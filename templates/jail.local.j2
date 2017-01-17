@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+
+[DEFAULT]
+bantime = 3600
+sender = fail2ban@{{ ansible_nodename }}
+destemail = {{ local_user_email }}
+action = %(action_mwl)s
+
+[sshd]
+enabled = true

@@ -1,0 +1,34 @@
+---
+
+- name: Start and enable postfix
+  service:
+    name: postfix
+    state: started
+    enabled: yes
+
+- name: Start and enable sshd
+  service:
+    name: sshd
+    state: started
+    enabled: yes
+  when: enable_sshd
+
+- name: Start and enable fail2ban
+  service:
+    name: fail2ban
+    state: started
+    enabled: yes
+  when: enable_fail2ban
+
+- name: Enable nfs-server
+  service:
+    name: nfs-server
+    enabled: yes
+  when: enable_vagrant_nfs
+
+- name: Start and enable powertop.service
+  service:
+    name: powertop
+    state: started
+    enabled: yes
+  when: enable_powertop

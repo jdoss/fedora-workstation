@@ -1,0 +1,12 @@
+---
+
+- name: group install ansible dependanices
+  raw: dnf groupinstall "Ansible node"
+
+- name: gather facts
+  setup: 
+
+- name: detect ansible_system_vendor
+  set_fact:
+    thinkpad: true
+  when: ansible_system_vendor == "LENOVO"

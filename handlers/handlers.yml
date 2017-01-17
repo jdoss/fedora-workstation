@@ -1,0 +1,14 @@
+---
+
+- name: Create systemd-tmpfiles
+  command: systemd-tmpfiles --prefix=/sys --create
+
+- name: Restart sshd
+  service:
+    name: sshd
+    state: restarted
+
+- name: Restart fail2ban
+  service:
+    name: fail2ban
+    state: restarted

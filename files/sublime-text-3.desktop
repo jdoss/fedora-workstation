@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Sublime Text 3
+GenericName=Text Editor
+Icon=/opt/sublime_text_3/Icon/128x128/sublime-text.png
+Comment=Sophisticated text editor \for code, markup and prose
+Exec=/opt/sublime_text_3/sublime_text %F
+MimeType=text/plain;
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=Development;Utility;TextEditor;
+Keywords=Text;Editor;

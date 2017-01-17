@@ -1,0 +1,87 @@
+---
+- block:
+
+    - name: Check for ChefDK
+      stat: path=/opt/chefdk
+      register: chefdk_installed
+
+    - name: Install ChefDK RPM
+      dnf:
+        name: 'https://packages.chef.io/files/stable/chefdk/1.1.16/el/7/chefdk-1.1.16-1.el7.x86_64.rpm'
+        state: present
+      when: chefdk_installed.stat.exists == False
+
+  when: install_chefdk
+
+- name: Install Google Chrome
+  dnf:
+    name: google-chrome-stable
+    state: present
+  when: install_chrome
+
+- name: Install Google Talk
+  dnf:
+    name: google-talkplugin
+    state: present
+  when: install_googletalk
+
+- name: Install Spotify
+  dnf:
+    name: spotify-client
+    state: present
+  when: install_spotify
+
+- block:
+
+    - name: Check for Slack
+      stat: path=/usr/bin/slack
+      register: slack_installed
+
+    - name: Install Slack RPM
+      dnf:
+        name: 'https://downloads.slack-edge.com/linux_releases/slack-2.3.4-0.1.fc21.x86_64.rpm'
+        state: present
+      when: slack_installed.stat.exists == False
+
+  when: install_slack
+
+- block:
+
+  - name: Check for Zoom
+    stat: path=/usr/bin/zoom
+    register: zoom_installed
+
+  - name: Install Zoom RPM
+    dnf:
+      name: 'https://zoom.us/client/latest/zoom_x86_64.rpm'
+      state: present
+    when: zoom_installed.stat.exists == False
+
+  when: install_zoom
+
+- block:
+
+  - name: download and extract Sublime Text 3
+    unarchive:
+      src: https://download.sublimetext.com/sublime_text_3_build_{{ sublime_text_3_build_number }}_x64.tar.bz2
+      dest: /opt
+      remote_src: True
+      creates: /opt/sublime_text_3
+
+  - name: Install Sublime Text 3 desktop file
+    copy:
+      src: "{{ playbook_dir }}/files/sublime-text-3.desktop"
+      dest: /usr/share/applications/sublime-text-3.desktop
+      owner: root
+      group: root
+      mode: 0644
+
+  - name: Create Sublime Text 3 symlink
+    file:
+      src: /opt/sublime_text_3/sublime_text
+      dest: /usr/bin/subl
+      owner: root
+      group: root
+      state: link
+
+  when: sublime_text_3

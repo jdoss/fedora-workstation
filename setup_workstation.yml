@@ -1,0 +1,23 @@
+---
+- name: Setup Workstation
+  hosts: workstation
+  become: true
+  gather_facts: false
+
+  vars_files:
+    - vars/vars.yml
+    - vars/vault_vars.yml
+
+  tasks:
+
+    - include: tasks/setup.yml
+    - include: tasks/repos.yml
+    - include: tasks/packages.yml
+    - include: tasks/users.yml
+    - include: tasks/thirdparty.yml
+    - include: tasks/system.yml
+    - include: tasks/harden.yml
+    - include: tasks/services.yml
+
+  handlers:
+    - include: handlers/handlers.yml

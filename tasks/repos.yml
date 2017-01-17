@@ -1,0 +1,48 @@
+---
+- block:
+
+    - name: Check for Google Chrome repo
+      stat: path=/etc/yum.repos.d/google-chrome.repo
+      register: chrome_installed
+
+    - name: Install Google Chrome repo
+      dnf:
+        name: 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
+        state: present
+      when: chrome_installed.stat.exists == False
+
+  when: install_chrome
+
+- block:
+
+    - name: Check for Google Talk repo
+      stat: path=/etc/yum.repos.d/google-talkplugin.repo
+      register: googletalk_installed
+
+    - name: Install Google Talk repo
+      dnf:
+        name: 'https://dl.google.com/linux/direct/google-talkplugin_current_x86_64.rpm'
+        state: present
+      when: googletalk_installed.stat.exists == False
+
+  when: install_googletalk
+
+- block:
+
+    - name: Check for fedora-multimedia repo
+      stat: path=/etc/yum.repos.d/fedora-multimedia.repo
+      register: fedora_multimedia_installed
+
+    - name: Install fedora-multimedia.repo
+      command: dnf config-manager --add-repo=http://negativo17.org/repos/fedora-multimedia.repo
+      when: fedora_multimedia_installed.stat.exists == False
+
+    - name: Check for fedora-spotify repo
+      stat: path=/etc/yum.repos.d/fedora-spotify.repo
+      register: fedora_spotify_installed
+
+    - name: Install fedora-spotify repo
+      command: dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
+      when: fedora_spotify_installed.stat.exists == False
+
+  when: install_spotify

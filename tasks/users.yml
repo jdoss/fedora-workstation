@@ -1,0 +1,62 @@
+---
+
+- name: Setup {{ local_user }} user
+  user:
+    name: "{{ local_user }}"
+    home: /home/{{ local_user }}
+    groups: mock,vagrant,libvirt,wheel
+    append: yes
+
+- name: Allow wheel group to sudo without a password
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%wheel'
+    line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+    validate: visudo -cf %s
+  when: local_user_passwordless_sudo
+
+- name: Grant {{ local_user }} access to libvirt via polkit
+  template:
+    src: templates/libvirt_polkit.j2
+    dest: /etc/polkit-1/rules.d/50-org.libvirt.unix.manage.rules
+
+- name: Create /home/{{ local_user }}/.cert directory
+  file:
+    path: /home/{{ local_user }}/.cert
+    state: directory
+    mode: 0750
+
+- name: Run restorecon on /home/{{ local_user }}/.cert
+  command: /usr/sbin/restorecon -R -v /home/{{ local_user }}/.cert
+
+- block:
+  - name: Create /home/{{ local_user }}/.config/terminator directory
+    file:
+      path: /home/{{ local_user }}/.config/terminator
+      state: directory
+      owner: "{{ local_user }}"
+      group: "{{ local_user }}"
+      mode: 0775
+
+  - name: Copy terminator config to /home/{{ local_user }}/.config/terminator/config
+    copy:
+      src: "{{ playbook_dir }}/files/terminator_config"
+      dest: /home/{{ local_user }}/.config/terminator/config
+      owner: "{{ local_user }}"
+      group: "{{ local_user }}"
+      mode: 0644
+
+- block:
+  - name: Check for bashrc file
+    local_action: stat path={{ playbook_dir }}/files/bashrc
+    register: bashrc
+
+  - name: Copy bashrc to /home/{{ local_user }}/.bashrc
+    copy:
+      src: "{{ playbook_dir }}/files/bashrc"
+      dest: /home/{{ local_user }}/.bashrc
+      owner: "{{ local_user }}"
+      group: "{{ local_user }}"
+      mode: 0660
+    when: bashrc.stat.exists

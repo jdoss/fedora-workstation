@@ -1,0 +1,10 @@
+files/bashrc
+.DS_Store
+*.retry
+*.env
+credentials/
+.vault_password
+.vagrant/
+*.sublime-project
+*.sublime-workspace
+.envrc

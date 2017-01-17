@@ -1,0 +1,92 @@
+---
+
+- name: Copy trackpoint.conf
+  copy:
+    src: "{{ playbook_dir }}/files/trackpoint.conf"
+    dest: /etc/tmpfiles.d/
+    owner: root
+    group: root
+    mode: 0644
+  when: thinkpad
+  notify: Create systemd-tmpfiles
+
+- name: Create libvirt storage directory
+  file:
+    path: "{{ libvirt_storage_path }}"
+    state: directory
+    mode: 0711
+
+- name: Set fcontext virt_image_t on /home/images
+  command: semanage fcontext -a -t virt_image_t "{{ libvirt_storage_path }}(/.*)?"
+
+- name: Restorecon on /home/images
+  command: /usr/sbin/restorecon -R -v {{ libvirt_storage_path }}
+
+- name: Get virt_pool facts
+  virt_pool: command=facts
+
+- name: Debug ansible_libvirt_pools.default.path
+  debug: var=ansible_libvirt_pools.default.path
+
+- name: Debug libvirt_storage_path
+  debug: var=libvirt_storage_path
+
+- block:
+
+  - name: Set default pool to inactive
+    virt_pool:
+      state: inactive
+      name: default
+
+  - name: Stop default pool
+    virt_pool:
+      command: destroy
+      name: default
+
+  - name: Undefine default pool
+    virt_pool:
+      command: undefine
+      name: default
+
+  - name: Define default pool from template
+    virt_pool:
+      command: define
+      name: default
+      xml: '{{ lookup("template", "libvirt_default_storage_pool.xml.j2") }}'
+
+  - name: Create default pool
+    virt_pool:
+      command: create
+      name: default
+
+  - name: Set default pool to active
+    virt_pool:
+      state: active
+      name: default
+
+  - name: Set default pool to autostart
+    virt_pool:
+      autostart: yes
+      name: default
+
+  when: ansible_libvirt_pools.default.path != libvirt_storage_path
+
+- block:
+
+  - name: Allow vagrant group to control NFS
+    template:
+      src: templates/vagrant-nfs.j2
+      dest: /etc/sudoers.d/vagrant-nfs
+      validate: 'visudo -cf %s'
+
+  - name: Allow connections to NFS in the firewall
+    firewalld:
+      service: "{{ item }}"
+      permanent: true
+      state: enabled
+    with_items:
+    - nfs
+    - rpc-bind
+    - mountd
+
+  when: enable_vagrant_nfs
