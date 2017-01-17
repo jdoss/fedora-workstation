@@ -4,9 +4,11 @@ This is an opinionated playbook to setup a Fedora 25+ workstation with everythin
 
 ## Quick Setup
 
-Make sure Ansible 2.2+ is installed on your workstation. Edit `vars/vars.yml` to  and run the following:
+Make sure Ansible 2.2+ is installed on your workstation and run the following inside the repository:
 
 `ansible-playbook setup_workstation.yml -e "local_user=yourusername local_user_email=you@example.com`
+
+For further customization, edit `vars/vars.yml` to fit your needs.
 
 ## License
 
