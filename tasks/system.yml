@@ -33,14 +33,14 @@
 
 - block:
 
-  - name: Set default pool to inactive
-    virt_pool:
-      state: inactive
-      name: default
-
   - name: Stop default pool
     virt_pool:
       command: destroy
+      name: default
+
+  - name: Set default pool to inactive
+    virt_pool:
+      state: inactive
       name: default
 
   - name: Undefine default pool
