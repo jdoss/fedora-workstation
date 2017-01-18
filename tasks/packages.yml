@@ -63,11 +63,13 @@
   - duplicity
   - elixir
   - euca2ools
+  - fail2ban
   - fdupes
   - fedfind
   - fedpkg
   - feh
   - figlet
+  - firewalld
   - flatpak-builder
   - fuse-python
   - fwsnort
@@ -183,6 +185,7 @@
   - python-docs
   - python-docs-info
   - python-epdb
+  - python-firewall
   - python-flake8
   - python-flask
   - python-flexmock
