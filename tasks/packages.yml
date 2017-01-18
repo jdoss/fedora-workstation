@@ -197,6 +197,7 @@
   - python-mccabe
   - python-mechanize
   - python-mock
+  - python-netaddr
   - python-pandas
   - python-passlib
   - python-pep8
