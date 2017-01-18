@@ -1,6 +1,6 @@
 galaxy_info:
   author: Joe Doss
-  description: Configures Fedora Workstation install for 10x Devopsing.
+  description: Configures your Fedora Workstation install for 10x Devopsing.
 
   license: MIT
 
