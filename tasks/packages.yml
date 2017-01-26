@@ -129,6 +129,7 @@
   - lynx
   - mash
   - meld
+  - mysql-devel
   - ncftp
   - nfs-utils
   - ngrep
@@ -157,6 +158,7 @@
   - pinta
   - pkgwat
   - postfix
+  - postgresql-devel
   - powertop
   - psad
   - pssh
