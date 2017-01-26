@@ -10,6 +10,16 @@
   when: thinkpad
   notify: Create systemd-tmpfiles
 
+- name: Copy iwlwifi.conf
+  copy:
+    src: "{{ playbook_dir }}/files/iwlwifi.conf"
+    dest: /etc/modprobe.d/iwlwifi.conf
+    owner: root
+    group: root
+    mode: 0644
+  when: thinkpad
+  notify: Unload iwlmvm
+
 - name: Create libvirt storage directory
   file:
     path: "{{ libvirt_storage_path }}"

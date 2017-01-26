@@ -1,7 +1,18 @@
 ---
 
 - name: Create systemd-tmpfiles
-  command: systemd-tmpfiles --prefix=/sys --create
+  command: /usr/bin/systemd-tmpfiles --prefix=/sys --create
+
+- name: Unload iwlmvm
+  modprobe:
+    name: iwlmvm
+    state: absent
+  notify: Load iwlmvm
+
+- name: Load iwlmvm
+  modprobe:
+    name: iwlmvm
+    state: present
 
 - name: Restart sshd
   service:
