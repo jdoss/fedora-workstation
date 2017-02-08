@@ -27,4 +27,4 @@ install_spotify: true
 install_zoom: true
 sublime_text_3: true
 sublime_text_3_build_number: 3126
-
+terminator_config: true
