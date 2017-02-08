@@ -116,6 +116,7 @@
   - libsemanage-devel
   - libtaskotron
   - libtool
+  - libvirt
   - libvirt-python
   - libvirt-sandbox
   - livecd-tools
