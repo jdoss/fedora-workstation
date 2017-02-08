@@ -32,3 +32,10 @@
     state: started
     enabled: yes
   when: enable_powertop
+
+- name: Start and enable libvirtd
+  service:
+    name: libvirtd
+    state: started
+    enabled: yes
+  when: enable_libvirtd
