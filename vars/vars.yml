@@ -13,6 +13,7 @@ enable_sshd: true
 enable_fail2ban: true
 enable_powertop: false
 enable_vagrant_nfs: true
+enable_libvirtd: true
 
 # Extras
 install_extra_fonts: true
@@ -27,4 +28,4 @@ install_spotify: true
 install_zoom: true
 sublime_text_3: true
 sublime_text_3_build_number: 3126
-
+terminator_config: true

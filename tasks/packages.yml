@@ -116,6 +116,7 @@
   - libsemanage-devel
   - libtaskotron
   - libtool
+  - libvirt
   - libvirt-python
   - libvirt-sandbox
   - livecd-tools
@@ -329,7 +330,6 @@
   - tuned-utils-systemtap
   - tunir
   - units
-  - vagrant
   - vagrant
   - vagrant-doc
   - vagrant-libvirt
