@@ -10,10 +10,10 @@
 
   tasks:
 
-    - include: tasks/users.yml
     - include: tasks/setup.yml
-    - include: tasks/repos.yml
     - include: tasks/packages.yml
+    - include: tasks/users.yml
+    - include: tasks/repos.yml
     - include: tasks/thirdparty.yml
     - include: tasks/system.yml
     - include: tasks/harden.yml
