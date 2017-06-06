@@ -28,18 +28,15 @@
 
 - name: Set fcontext virt_image_t on /home/images
   command: semanage fcontext -a -t virt_image_t "{{ libvirt_storage_path }}(/.*)?"
+  ignore_errors: true
 
 - name: Restorecon on /home/images
   command: /usr/sbin/restorecon -R -v {{ libvirt_storage_path }}
+  ignore_errors: true
 
 - name: Get virt_pool facts
   virt_pool: command=facts
-
-- name: Debug ansible_libvirt_pools.default.path
-  debug: var=ansible_libvirt_pools.default.path
-
-- name: Debug libvirt_storage_path
-  debug: var=libvirt_storage_path
+  become: yes
 
 - block:
 
