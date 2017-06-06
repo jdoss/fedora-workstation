@@ -6,11 +6,11 @@
     state: latest
 
 - name: install group packages
-  dnf: name={{item}} state=installed
-  with_items:
-  - "@development tools"
-  - "@fedora-packager"
-  - "@virtualization"
+ dnf: name={{item}} state=installed
+ with_items:
+ - "@development tools"
+ - "@fedora-packager"
+ - "@virtualization"
 
 - name: install extra packages
   dnf: name={{ item }} state=installed
@@ -28,15 +28,12 @@
   - aspell
   - aspell-en
   - atomic
-  - atomic-reactor
-  - authconfig-gtk
   - autoconf
   - autofs
   - automake
   - awscli
   - binwalk
   - bpython
-  - clipit
   - cmake
   - collectl
   - conntrack-tools
@@ -83,6 +80,7 @@
   - gnome-shell-extension-pomodoro
   - gnome-tweak-tool
   - gobby05
+  - gpaste
   - groovy
   - heimdall
   - hovercraft
@@ -170,7 +168,6 @@
   - pylint
   - pyp2rpm
   - pypy
-  - pyrasite
   - pyside-tools
   - pytest
   - python-argcomplete
@@ -273,7 +270,6 @@
   - rubygem-gem2rpm
   - rubygem-gherkin
   - rubygem-highline
-  - rubygem-openstack
   - rubygem-parseconfig
   - rubygem-pry
   - rubygem-pry-doc
@@ -384,7 +380,6 @@
   - rpm-devel
   - rpmconf
   - rpmconf
-  - rpmdepsize
   - rpmdevtools
   - rpmgrill
   - rpmlint
@@ -416,4 +411,3 @@
   - overpass-fonts
   - terminus-fonts
   when: install_extra_fonts
-
