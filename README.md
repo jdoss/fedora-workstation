@@ -6,7 +6,7 @@ This is an opinionated playbook to setup a Fedora 25+ workstation with everythin
 
 Make sure Ansible 2.2+ is installed on your workstation and run the following inside the repository:
 
-`ansible-playbook setup_workstation.yml -e "local_user=yourusername local_user_email=you@example.com`
+`ansible-playbook setup_workstation.yml -e "local_user=yourusername local_user_email=you@example.com local_user_passwordless_sudo=true  enable_sshd=true enable_fail2ban=true install_chefdk=true install_chrome=true install_googletalk=true install_slack=true install_spotify=true install_zoom=true install_atom=true --become --ask-sudo-pass`
 
 For further customization, edit `vars/vars.yml` to fit your needs.
 
