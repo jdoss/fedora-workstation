@@ -1,31 +1,32 @@
 ---
 
 # User
-local_user: example
-local_user_email: example@example.org
-local_user_passwordless_sudo: true
+local_user: jdoe
+local_user_email: jdoe@example.com
+local_user_passwordless_sudo: false
 
 # System
+thinkpad: false
 libvirt_storage_path: /home/images
 
 # Services
-enable_sshd: true
-enable_fail2ban: true
+enable_sshd: false
+enable_fail2ban: false
 enable_powertop: false
 enable_vagrant_nfs: true
 enable_libvirtd: true
 
 # Extras
-install_extra_fonts: true
-install_packager: true
+install_extra_fonts: false
+install_packager: false
 
 # Third party
-install_chefdk: true
-install_chrome: true
-install_googletalk: true
-install_slack: true
-install_spotify: true
-install_zoom: true
-sublime_text_3: true
+install_chefdk: false
+install_chrome: false
+install_googletalk: false
+install_slack: false
+install_spotify: false
+install_zoom: false
+sublime_text_3: false
+install_atom: false
 sublime_text_3_build_number: 3126
-terminator_config: true
