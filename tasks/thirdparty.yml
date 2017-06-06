@@ -39,7 +39,7 @@
 
     - name: Install Slack RPM
       dnf:
-        name: 'https://downloads.slack-edge.com/linux_releases/slack-2.3.4-0.1.fc21.x86_64.rpm'
+        name: 'https://downloads.slack-edge.com/linux_releases/slack-2.6.2-0.1.fc21.x86_64.rpm'
         state: present
       when: slack_installed.stat.exists == False
 
@@ -61,7 +61,7 @@
 
 - block:
 
-  - name: download and extract Sublime Text 3
+  - name: Download and extract Sublime Text 3
     unarchive:
       src: https://download.sublimetext.com/sublime_text_3_build_{{ sublime_text_3_build_number }}_x64.tar.bz2
       dest: /opt
@@ -85,3 +85,17 @@
       state: link
 
   when: sublime_text_3
+
+- block:
+
+  - name: Check for Atom
+    stat: path=/usr/bin/atom
+    register: atom_installed
+
+  - name: Install Atom RPM
+    dnf:
+      name: 'https://atom.io/download/rpm'
+      state: present
+    when: atom_installed.stat.exists == False
+
+when: install_atom
