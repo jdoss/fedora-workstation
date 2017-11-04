@@ -29,14 +29,6 @@
 
 - block:
 
-    - name: Check for fedora-multimedia repo
-      stat: path=/etc/yum.repos.d/fedora-multimedia.repo
-      register: fedora_multimedia_installed
-
-    - name: Install fedora-multimedia.repo
-      command: dnf config-manager --add-repo=http://negativo17.org/repos/fedora-multimedia.repo
-      when: fedora_multimedia_installed.stat.exists == False
-
     - name: Check for fedora-spotify repo
       stat: path=/etc/yum.repos.d/fedora-spotify.repo
       register: fedora_spotify_installed
@@ -46,3 +38,15 @@
       when: fedora_spotify_installed.stat.exists == False
 
   when: install_spotify
+
+- block:
+
+    - name: Check for sublime-text repo
+      stat: path=/etc/yum.repos.d/sublime-text.repo
+      register: fedora_sublime_text_installed
+
+    - name: Install sublime-text repo
+      command: dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
+      when: fedora_sublime_text_installed.stat.exists == False
+
+  when: install_sublime_text
