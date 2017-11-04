@@ -1,12 +1,17 @@
 # Fedora Workstation
 
-This is an opinionated playbook to setup a Fedora 25+ workstation with everything you need to start developing on Fedora Linux.
+This is an opinionated playbook to setup a Fedora 27+ workstation with everything you need to start developing on Fedora Linux.
 
 ## Quick Setup
 
-Make sure Ansible 2.2+ is installed on your workstation and run the following inside the repository:
+Follow these steps to install Ansible, checkout the Fedora Workstation repo, and run the playbook:
 
-`ansible-playbook setup_workstation.yml -e "local_user=yourusername local_user_email=you@example.com local_user_passwordless_sudo=true  enable_sshd=true enable_fail2ban=true install_chefdk=true install_chrome=true install_googletalk=true install_slack=true install_spotify=true install_zoom=true install_atom=true --become --ask-sudo-pass`
+```
+sudo dnf install ansible -y
+git checkout https://github.com/jdoss/fedora-workstation.git ~/fedora-workstation
+cd ~/fedora-workstation
+ansible-playbook setup_workstation.yml -e "local_user=yourusername local_user_email=you@example.com  --become --ask-sudo-pass
+```
 
 For further customization, edit `vars/vars.yml` to fit your needs.
 
