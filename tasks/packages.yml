@@ -1,24 +1,22 @@
 ---
 
-- name: upgrade all packages
+- name: Upgrade all packages
   dnf:
     name: "*"
     state: latest
 
-- name: install group packages
- dnf: name={{item}} state=installed
- with_items:
- - "@development tools"
- - "@fedora-packager"
- - "@virtualization"
+- name: Install group packages
+  dnf: name={{item}} state=installed
+  with_items:
+  - "@development tools"
+  - "@fedora-packager"
+  - "@virtualization"
 
-- name: install extra packages
+- name: Install extra packages
   dnf: name={{ item }} state=installed
   with_items:
   - acpi
   - aide
-  - aircrack-ng
-  - airsnort
   - android-tools
   - ansible-lint
   - appliance-tools
@@ -44,7 +42,6 @@
   - crypto-utils
   - Cython
   - dcfldd
-  - devassistant-devel
   - ditaa
   - dnf-plugins-extras-common
   - dnf-plugins-extras-kickstart
@@ -79,7 +76,6 @@
   - gnome-shell-extension-fedmsg
   - gnome-shell-extension-pomodoro
   - gnome-tweak-tool
-  - gobby05
   - gpaste
   - groovy
   - heimdall
@@ -118,7 +114,6 @@
   - libvirt-python
   - libvirt-sandbox
   - livecd-tools
-  - livestreamer
   - liveusb-creator
   - lm_sensors
   - lorax
@@ -156,6 +151,7 @@
   - picocom
   - pinta
   - pkgwat
+  - policycoreutils-python
   - postfix
   - postgresql-devel
   - powertop
@@ -336,16 +332,15 @@
   - whois
   - wireshark-cli
   - xbacklight
-  - xchat
+ # - xchat
   - xclip
   - xfsdump
   - xournal
   - xsel
   - ykclient
   - ykpers
-#  - direnv ## still in testing
 
-- name: install rpm packager packages
+- name: Install RPM packager packages
   dnf: name={{ item }} state=installed
   with_items:
   - blender-rpm-macros
@@ -390,7 +385,7 @@
   - web-assets-devel
   when: install_packager
 
-- name: install extra fonts
+- name: Install extra fonts
   dnf: name={{ item }} state=installed
   with_items:
   - adobe-source-code-pro-fonts

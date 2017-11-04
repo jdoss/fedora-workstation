@@ -4,13 +4,12 @@ galaxy_info:
 
   license: MIT
 
-  min_ansible_version: 2.2
+  min_ansible_version: 2.4
 
   platforms:
   - name: Fedora
     versions:
-    - 24
-    - 25
+      - 27
 
   galaxy_tags:
     - workstation

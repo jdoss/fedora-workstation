@@ -1,42 +1,27 @@
 ---
 
-- name: Copy trackpoint.conf
-  copy:
-    src: "{{ playbook_dir }}/files/trackpoint.conf"
-    dest: /etc/tmpfiles.d/
-    owner: root
-    group: root
-    mode: 0644
-  when: thinkpad
-  notify: Create systemd-tmpfiles
-
-- name: Copy iwlwifi.conf
-  copy:
-    src: "{{ playbook_dir }}/files/iwlwifi.conf"
-    dest: /etc/modprobe.d/iwlwifi.conf
-    owner: root
-    group: root
-    mode: 0644
-  when: thinkpad
-  notify: Unload iwlmvm
-
 - name: Create libvirt storage directory
   file:
     path: "{{ libvirt_storage_path }}"
     state: directory
     mode: 0711
 
-- name: Set fcontext virt_image_t on /home/images
-  command: semanage fcontext -a -t virt_image_t "{{ libvirt_storage_path }}(/.*)?"
-  ignore_errors: true
+- name: Set fcontext virt_image_t on {{ libvirt_storage_path }}
+  sefcontext:
+    target: "{{ libvirt_storage_path }}(/.*)?"
+    setype: virt_image_t
+    state: present
+  register: libvirt_storage_path_filecontext
 
-- name: Restorecon on /home/images
-  command: /usr/sbin/restorecon -R -v {{ libvirt_storage_path }}
-  ignore_errors: true
+- name: Run restorecon on {{ libvirt_storage_path }}
+  shell: "/usr/sbin/restorecon -R -v {{ libvirt_storage_path }}"
+  when: libvirt_storage_path_filecontext.changed
+
+- name: Run virsh pool-list
+  command: /usr/bin/virsh pool-list
 
 - name: Get virt_pool facts
   virt_pool: command=facts
-  become: yes
 
 - block:
 
