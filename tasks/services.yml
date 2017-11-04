@@ -26,16 +26,16 @@
     enabled: yes
   when: enable_vagrant_nfs
 
-- name: Start and enable powertop.service
-  service:
-    name: powertop
-    state: started
-    enabled: yes
-  when: enable_powertop
-
 - name: Start and enable libvirtd
   service:
     name: libvirtd
     state: started
     enabled: yes
   when: enable_libvirtd
+
+- name: Start and enable docker
+  service:
+    name: docker
+    state: started
+    enabled: yes
+  when: enable_docker
