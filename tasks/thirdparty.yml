@@ -31,7 +31,7 @@
 
     - name: Install Slack RPM
       dnf:
-        name: 'https://downloads.slack-edge.com/linux_releases/slack-2.8.2-0.1.fc21.x86_64.rpm'
+        name: 'https://downloads.slack-edge.com/linux_releases/slack-3.0.2-0.1.fc21.x86_64.rpm'
         state: present
       when: slack_installed.stat.exists == False
 
