@@ -31,6 +31,8 @@
     path: /home/{{ local_user }}/.cert
     state: directory
     mode: 0750
+    owner: "{{ local_user }}"
+    group: "{{ local_user }}"
 
 - name: Run restorecon on /home/{{ local_user }}/.cert
   command: /usr/sbin/restorecon -R -v /home/{{ local_user }}/.cert
