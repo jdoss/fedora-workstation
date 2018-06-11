@@ -165,6 +165,7 @@
   - pypy
   - pyside-tools
   - pytest
+  - python3-firewall
   - python-argcomplete
   - python-autopep8
   - python-beautifulsoup4

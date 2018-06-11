@@ -74,16 +74,16 @@
       dest: /etc/sudoers.d/vagrant-nfs
       validate: 'visudo -cf %s'
 
-  # - name: Allow connections to NFS in the firewall
-  #   firewalld:
-  #     zone: FedoraWorkstation
-  #     service: "{{ item }}"
-  #     permanent: true
-  #     immediate: true
-  #     state: enabled
-  #   with_items:
-  #   - nfs
-  #   - rpc-bind
-  #   - mountd
+  - name: Allow connections to NFS in the firewall
+    firewalld:
+      zone: FedoraWorkstation
+      service: "{{ item }}"
+      permanent: true
+      immediate: true
+      state: enabled
+    with_items:
+    - nfs
+    - rpc-bind
+    - mountd
 
   when: enable_vagrant_nfs
