@@ -1,5 +1,5 @@
 ---
-
+handlers:
 - name: Create systemd-tmpfiles
   command: /usr/bin/systemd-tmpfiles --prefix=/sys --create
 

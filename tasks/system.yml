@@ -25,24 +25,6 @@
 
 - block:
 
-  - name: Stop default pool
-    virt_pool:
-      command: destroy
-      name: default
-    when: ansible_libvirt_pools.default.path is defined
-
-  - name: Set default pool to inactive
-    virt_pool:
-      state: inactive
-      name: default
-    when: ansible_libvirt_pools.default.path is defined
-
-  - name: Undefine default pool
-    virt_pool:
-      command: undefine
-      name: default
-    when: ansible_libvirt_pools.default.path is defined
-
   - name: Define default pool from template
     virt_pool:
       command: define
@@ -63,6 +45,24 @@
     virt_pool:
       autostart: yes
       name: default
+
+  - name: Stop default pool
+    virt_pool:
+      command: destroy
+      name: default
+    when: ansible_libvirt_pools.default.path is defined
+
+  - name: Set default pool to inactive
+    virt_pool:
+      state: inactive
+      name: default
+    when: ansible_libvirt_pools.default.path is defined
+
+  - name: Undefine default pool
+    virt_pool:
+      command: undefine
+      name: default
+    when: ansible_libvirt_pools.default.path is defined
 
   when: "ansible_libvirt_pools.default.path != libvirt_storage_path or ansible_libvirt_pools.default.path is not defined"
 

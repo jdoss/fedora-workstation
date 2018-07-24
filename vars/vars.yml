@@ -1,8 +1,8 @@
 ---
 
 # User
-local_user: jdoe
-local_user_email: john@doe.biz
+local_user: jdoe 
+local_user_email: jdoe@email.com 
 local_user_passwordless_sudo: true
 
 # System
@@ -10,7 +10,7 @@ libvirt_storage_path: /home/images
 
 # Services
 enable_sshd: true
-enable_fail2ban: false
+enable_fail2ban: true 
 enable_vagrant_nfs: true
 enable_libvirtd: true
 enable_docker: true
@@ -20,10 +20,13 @@ install_extra_fonts: true
 install_packager: true
 
 # Third party
-install_chrome: true
+install_chrome: true 
 install_googletalk: true
 install_slack: true
 install_spotify: true
 install_zoom: true
-install_sublime_text: true
-install_atom: true
+install_sublime_text: false
+install_atom: true 
+
+#python3
+ansible_python_interpreter: /usr/bin/python3

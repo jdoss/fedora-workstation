@@ -1,6 +1,6 @@
 ---
 
-- name: group install ansible dependanices
+- name: group install ansible dependenices
   raw: dnf groupinstall "Ansible node" -y
 
 - name: gather facts
