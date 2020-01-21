@@ -13,7 +13,6 @@ enable_sshd: true
 enable_fail2ban: true 
 enable_vagrant_nfs: true
 enable_libvirtd: true
-enable_docker: true
 
 # Extras
 install_extra_fonts: true

@@ -1,15 +1,15 @@
----
+--- 
 
-- name: Create Docker group
+- name: Create Vagrant group
   group:
-    name: docker
+    name: vagrant
     state: present
 
 - name: Setup {{ local_user }} user
   user:
     name: "{{ local_user }}"
     home: /home/{{ local_user }}
-    groups: mock,vagrant,libvirt,wheel,docker
+    groups: mock,vagrant,libvirt,wheel
     append: yes
 
 - name: Allow wheel group to sudo without a password

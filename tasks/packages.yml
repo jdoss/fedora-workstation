@@ -25,7 +25,7 @@
   - asciidoc-doc
   - aspell
   - aspell-en
-  - atomic
+# - atomic
   - autoconf
   - autofs
   - automake
@@ -36,10 +36,9 @@
   - collectl
   - conntrack-tools
   - copr-cli
-  - copr-cli-doc
   - createrepo
   - createrepo_c-devel
-  - crypto-utils
+#  - crypto-utils
   - Cython
   - dcfldd
   - ditaa
@@ -66,13 +65,13 @@
   - firewalld
   - flatpak-builder
   - fwsnort
-  - fwupdate
+#  - fwupdate
   - gcc-c++
   - gcc-go
   - gdb-doc
   - gimp
   - glances
-  - gnome-shell-extension-fedmsg
+#  - gnome-shell-extension-fedmsg
   - gnome-shell-extension-pomodoro
   - gnome-tweak-tool
   - gpaste
@@ -110,7 +109,7 @@
   - libtaskotron
   - libtool
   - libvirt
-  - libvirt-python
+#  - libvirt-python
   - libvirt-sandbox
   - livecd-tools
   - liveusb-creator
@@ -120,7 +119,7 @@
   - lsscsi
   - ltrace
   - lynx
-  - mash
+#  - mash
   - meld
   - mysql-devel
   - ncftp
@@ -149,8 +148,8 @@
   - perf
   - picocom
   - pinta
-  - pkgwat
-  - policycoreutils-python
+#  - pkgwat
+#  - policycoreutils-python
   - postfix
   - postgresql-devel
   - powertop
@@ -169,16 +168,16 @@
   - python-argcomplete
   - python-autopep8
   - python-beautifulsoup4
-  - python-boto
+#  - python-boto
   - python-bottle
   - python-celery
   - python-cffi-doc
-  - python-clientform
+#  - python-clientform
   - python-createrepo_c
   - python-demjson
-  - python-docker-py
+#  - python-docker-py
   - python-docs
-  - python-docs-info
+#  - python-docs-info
   - python-epdb
   - python-flake8
   - python-flask
@@ -186,7 +185,7 @@
   - python-ipython
   - python-ipython-gui
   - python-ipython-sphinx
-  - python-kickstart
+#  - python-kickstart
   - python-lxml
   - python-mccabe
   - python-mechanize
@@ -195,17 +194,17 @@
   - python-pandas
   - python-passlib
   - python-pep8
-  - python-productmd
+#  - python-productmd
   - python-pygments
   - python-pyside
   - python-requests
   - python-rope
-  - python-ropemode
+#  - python-ropemode
   - python-rpmfluff
   - python-sphinx
   - python-sphinx-doc
   - python-sphinx_rtd_theme
-  - python-straight-plugin
+#  - python-straight-plugin
   - python-virtualenv
   - python-virtualenvwrapper
   - python2-devel
@@ -247,28 +246,27 @@
   - recode
   - redis
   - rfkill
-  - rolekit
+#  - rolekit
   - rpm-ostree
-  - rpm-ostree-toolbox
+#  - rpm-ostree-toolbox
   - ruby
   - ruby-devel
   - ruby-doc
   - ruby-irb
-  - rubygem-aws-sdk
+#  - rubygem-aws-sdk
   - rubygem-cucumber
-  - rubygem-dynect_rest
-  - rubygem-dynect_rest
-  - rubygem-fog
-  - rubygem-fog-doc
+#  - rubygem-dynect_rest
+#  - rubygem-fog
+#  - rubygem-fog-doc
   - rubygem-gem2rpm
   - rubygem-gherkin
   - rubygem-highline
   - rubygem-parseconfig
   - rubygem-pry
   - rubygem-pry-doc
-  - rubygem-puppet-lint
+#  - rubygem-puppet-lint
   - rubygem-rails
-  - rubygem-rhc
+#  - rubygem-rhc
   - rubygem-rspec
   - rubygem-thor
   - rubygem-wirb
@@ -276,8 +274,7 @@
   - rubygems-devel
   - runc
   - sbcl
-  - sbt
-  - sbt
+#  - sbt
   - scala
   - scap-workbench
   - scapy
@@ -287,7 +284,7 @@
   - screenfetch
   - setools-console
   - sg3_utils
-  - sigul
+#  - sigul
   - smartmontools
   - socat
   - spec2scl
@@ -317,7 +314,7 @@
   - tuned
   - tuned-utils
   - tuned-utils-systemtap
-  - tunir
+#  - tunir
   - units
   - vagrant
   - vagrant-doc
@@ -351,9 +348,9 @@
   - ghc-srpm-macros
   - gnat-srpm-macros
   - go-srpm-macros
-  - gofed
-  - gofed-build
-  - gofed-scan
+#  - gofed
+#  - gofed-build
+#  - gofed-scan
   - golang
   - golang-godoc
   - golang-gotype
@@ -379,6 +376,7 @@
   - rpmreaper
   - scl-utils-build
   - sip-macros
+  - terminator
   - web-assets-devel
   when: install_packager
 

@@ -2,7 +2,7 @@
 - name: Setup Workstation
   hosts: workstation
   become: true
-  gather_facts: false
+  gather_facts: true
 
   vars_files:
     - vars/vars.yml
@@ -10,12 +10,12 @@
 
   tasks:
     - include_tasks: tasks/setup.yml
+    - include_tasks: tasks/repos.yml
     - include_tasks: tasks/packages.yml
     - include_tasks: tasks/users.yml
-    - include_tasks: tasks/repos.yml
     - include_tasks: tasks/services.yml
-    - include_tasks: tasks/thirdparty.yml
     - include_tasks: tasks/system.yml
+    - include_tasks: tasks/thirdparty.yml
     - include_tasks: tasks/harden.yml
 
   handlers:
