@@ -19,4 +19,4 @@
     - include_tasks: tasks/harden.yml
 
   handlers:
-    - include_tasks: handlers/main.yml
+    - import_tasks: handlers/main.yml
