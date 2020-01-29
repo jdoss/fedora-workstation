@@ -22,7 +22,7 @@
 
 - name: Enable nfs-server
   service:
-    name: nfs
+    name: nfs-server
     enabled: yes
   when: enable_vagrant_nfs
 
@@ -32,10 +32,3 @@
     state: started
     enabled: yes
   when: enable_libvirtd
-
-- name: Start and enable docker
-  service:
-    name: docker
-    state: started
-    enabled: yes
-  when: enable_docker
