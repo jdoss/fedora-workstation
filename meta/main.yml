@@ -1,15 +1,15 @@
 galaxy_info:
   author: Joe Doss
-  description: Configures your Fedora Workstation install for 10x Devopsing.
+  description: Configures your Fedora Workstation for development work.
 
   license: MIT
 
-  min_ansible_version: 2.4
+  min_ansible_version: 2.9.7
 
   platforms:
   - name: Fedora
     versions:
-      - 28
+      - 32
 
   galaxy_tags:
     - workstation

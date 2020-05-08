@@ -6,10 +6,8 @@
 
   vars_files:
     - vars/vars.yml
-    - vars/vault_vars.yml
 
   tasks:
-    - include_tasks: tasks/setup.yml
     - include_tasks: tasks/repos.yml
     - include_tasks: tasks/packages.yml
     - include_tasks: tasks/users.yml

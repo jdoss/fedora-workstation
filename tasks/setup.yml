@@ -1,7 +1,0 @@
----
-
-- name: group install ansible dependenices
-  raw: dnf install ansible -y
-
-- name: gather facts
-  setup:

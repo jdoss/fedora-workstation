@@ -6,367 +6,273 @@
     state: latest
 
 - name: Install group packages
-  dnf: name={{item}} state=installed
-  with_items:
-  - "@development tools"
-  - "@fedora-packager"
-  - "@virtualization"
+  dnf:
+    name: [
+            '@development tools',
+            '@fedora-packager',
+            '@virtualization'
+          ]
+    state: installed
 
 - name: Install extra packages
-  dnf: name={{ item }} state=installed
-  with_items:
-  - acpi
-  - aide
-  - android-tools
-  - ansible-lint
-  - appliance-tools
-  - arpwatch
-  - asciidoc
-  - asciidoc-doc
-  - aspell
-  - aspell-en
-  - autoconf
-  - autofs
-  - automake
-  - awscli
-  - binwalk
-  - bpython
-  - cmake
-  - collectl
-  - conntrack-tools
-  - copr-cli
-  - createrepo
-  - createrepo_c-devel
-  - Cython
-  - dcfldd
-  - ditaa
-  - dnf-plugins-extras-common
-  - dnf-plugins-extras-kickstart
-  - dnf-plugins-extras-repoclosure
-  - dnf-plugins-extras-repograph
-  - dnf-plugins-extras-show-leaves
-  - dnf-plugins-extras-tracer
-  - docker
-  - docker-vim
-  - doge
-  - doxygen
-  - dstat
-  - duplicity
-  - elixir
-  - euca2ools
-  - fail2ban
-  - fdupes
-  - fedfind
-  - fedpkg
-  - feh
-  - figlet
-  - firewalld
-  - flatpak-builder
-  - fwsnort
-  - gcc-c++
-  - gcc-go
-  - gdb-doc
-  - gimp
-  - glances
-  - gnome-shell-extension-pomodoro
-  - gnome-tweak-tool
-  - gpaste
-  - groovy
-  - heimdall
-  - hovercraft
-  - htop
-  - httpie
-  - hub
-  - imagefactory
-  - imagefactory-plugins-Docker
-  - imagefactory-plugins-IndirectionCloud
-  - inkscape
-  - inotify-tools
-  - intltool
-  - inxi
-  - iotop
-  - iptraf-ng
-  - jq
-  - jython
-  - kernel-devel
-  - kismet
-  - kismet-plugins
-  - letsencrypt
-  - lftp
-  - libguestfs
-  - libguestfs-tools
-  - libguestfs-tools-c
-  - libguestfs-xfs
-  - libicns-utils
-  - libmtp-examples
-  - libnfs
-  - libnfsidmap
-  - libsemanage-devel
-  - libtaskotron
-  - libtool
-  - libvirt
-  - libvirt-sandbox
-  - livecd-tools
-  - liveusb-creator
-  - lm_sensors
-  - lorax
-  - lshw
-  - lsscsi
-  - ltrace
-  - lynx
-  - meld
-  - mysql-devel
-  - ncftp
-  - nfs-utils
-  - ngrep
-  - nmap
-  - nmon
-  - nodejs
-  - nodejs-docs
-  - nodejs-grunt
-  - npm
-  - openscap
-  - openscap-containers
-  - openscap-daemon
-  - openscap-scanner
-  - openscap-utils
-  - openssl-devel
-  - pandoc
-  - pass
-  - patchutils
-  - pavucontrol
-  - pavumeter
-  - pcp
-  - pcp-doc
-  - pcp-gui
-  - perf
-  - picocom
-  - pinta
-  - postfix
-  - postgresql-devel
-  - powertop
-  - psad
-  - pssh
-  - pungi
-  - pv
-  - pyflakes
-  - pykickstart
-  - pylint
-  - pyp2rpm
-  - pypy
-  - pyside-tools
-  - pytest
-  - python3-firewall
-  - python-argcomplete
-  - python-autopep8
-  - python-beautifulsoup4
-  - python-bottle
-  - python-celery
-  - python-cffi-doc
-  - python-createrepo_c
-  - python-demjson
-  - python-docs
-  - python-epdb
-  - python-flake8
-  - python-flask
-  - python-flexmock
-  - python-ipython
-  - python-ipython-gui
-  - python-ipython-sphinx
-  - python-lxml
-  - python-mccabe
-  - python-mechanize
-  - python-mock
-  - python-netaddr
-  - python-pandas
-  - python-passlib
-  - python-pep8
-  - python-pygments
-  - python-pyside
-  - python-requests
-  - python-rope
-  - python-rpmfluff
-  - python-sphinx
-  - python-sphinx-doc
-  - python-sphinx_rtd_theme
-  - python-virtualenv
-  - python-virtualenvwrapper
-  - python2-devel
-  - python3-autopep8
-  - python3-bottle
-  - python3-bpython
-  - python3-celery
-  - python3-cffi
-  - python3-click
-  - python3-Cython
-  - python3-devel
-  - python3-django
-  - python3-docs
-  - python3-flake8
-  - python3-flask
-  - python3-flexmock
-  - python3-ipython
-  - python3-ipython-gui
-  - python3-ipython-sphinx
-  - python3-mccabe
-  - python3-mock
-  - python3-mypy
-  - python3-nose
-  - python3-pandas
-  - python3-pelican
-  - python3-pep8
-  - python3-pillow-devel
-  - python3-productmd
-  - python3-pyflakes
-  - python3-pygments
-  - python3-pylint
-  - python3-sphinx
-  - python3-sphinx_rtd_theme
-  - python3-straight-plugin
-  - python3-virtualenv
-  - qiv
-  - qpdf
-  - ranger
-  - recode
-  - redis
-  - rfkill
-  - rpm-ostree
-  - ruby
-  - ruby-devel
-  - ruby-doc
-  - ruby-irb
-  - rubygem-cucumber
-  - rubygem-gem2rpm
-  - rubygem-gherkin
-  - rubygem-highline
-  - rubygem-parseconfig
-  - rubygem-pry
-  - rubygem-pry-doc
-  - rubygem-rails
-  - rubygem-rspec
-  - rubygem-thor
-  - rubygem-wirb
-  - rubygems
-  - rubygems-devel
-  - runc
-  - sbcl
-  - scala
-  - scap-workbench
-  - scapy
-  - scl-utils-build
-  - screen
-  - screen
-  - screenfetch
-  - setools-console
-  - sg3_utils
-  - smartmontools
-  - socat
-  - spec2scl
-  - speedtest-cli
-  - spin-kickstarts
-  - sssd-nfs-idmap
-  - strace
-  - surl
-  - swig
-  - swig-doc
-  - sysstat
-  - system-storage-manager
-  - task
-  - tcllib
-  - terminator
-  - testcloud
-  - testdisk
-  - thunderbird
-  - tito
-  - tlp
-  - tlp-rdw
-  - tmux
-  - tmuxinator
-  - tpp
-  - transmission-cli
-  - tuna
-  - tuned
-  - tuned-utils
-  - tuned-utils-systemtap
-  - units
-  - vagrant
-  - vagrant-doc
-  - vagrant-libvirt
-  - vagrant-libvirt-doc
-  - valgrind
-  - vim-enhanced
-  - virt-top
-  - whois
-  - wireshark-cli
-  - xbacklight
-  - xclip
-  - xfsdump
-  - xournal
-  - xsel
-  - ykclient
-  - ykpers
+  dnf:
+    name: [
+            'acpi',
+            'aide',
+            'ansible-lint',
+            'appliance-tools',
+            'arpwatch',
+            'asciidoc',
+            'asciidoc-doc',
+            'aspell',
+            'aspell-en',
+            'autoconf',
+            'autofs',
+            'automake',
+            'awscli',
+            'binwalk',
+            'bpython',
+            'buildah',
+            'cmake',
+            'collectl',
+            'conntrack-tools',
+            'copr-cli',
+            'createrepo',
+            'createrepo_c-devel',
+            'crun',
+            'dnf-plugins-extras-common',
+            'dnf-plugins-extras-kickstart',
+            'dnf-plugins-extras-repoclosure',
+            'dnf-plugins-extras-repograph',
+            'dnf-plugins-extras-show-leaves',
+            'dnf-plugins-extras-tracer',
+            'doge',
+            'doxygen',
+            'dstat',
+            'duplicity',
+            'elixir',
+            'fail2ban',
+            'fdupes',
+            'fedfind',
+            'fedpkg',
+            'feh',
+            'figlet',
+            'firewalld',
+            'flatpak-builder',
+            'fwsnort',
+            'gcc-c++',
+            'gimp',
+            'glances',
+            'gnome-shell-extension-gpaste',
+            'gnome-tweak-tool',
+            'gpaste',
+            'gpaste-devel',
+            'gpaste-ui',
+            'heimdall',
+            'htop',
+            'httpie',
+            'hub',
+            'inkscape',
+            'inotify-tools',
+            'intltool',
+            'inxi',
+            'iotop',
+            'iptraf-ng',
+            'jq',
+            'kernel-devel',
+            'letsencrypt',
+            'lftp',
+            'libguestfs',
+            'libguestfs-tools',
+            'libguestfs-tools-c',
+            'libguestfs-xfs',
+            'libicns-utils',
+            'libmtp-examples',
+            'libnfs',
+            'libnfsidmap',
+            'libsemanage-devel',
+            'libtaskotron',
+            'libtool',
+            'libvirt',
+            'libvirt-sandbox',
+            'livecd-tools',
+            'liveusb-creator',
+            'lm_sensors',
+            'lorax',
+            'lshw',
+            'lsscsi',
+            'ltrace',
+            'lynx',
+            'meld',
+            'mosh  ',
+            'mysql-devel',
+            'ncftp',
+            'nfs-utils',
+            'ngrep',
+            'nmap',
+            'nmon',
+            'nodejs',
+            'nodejs-docs',
+            'nodejs-grunt',
+            'npm',
+            'openscap',
+            'openscap-containers',
+            'openscap-daemon',
+            'openscap-scanner',
+            'openscap-utils',
+            'openssl-devel',
+            'pandoc',
+            'pass',
+            'patchutils',
+            'pavucontrol',
+            'pavumeter',
+            'pcp',
+            'pcp-doc',
+            'pcp-gui',
+            'perf',
+            'picocom',
+            'pinta',
+            'postfix',
+            'postgresql-devel',
+            'psad',
+            'pssh',
+            'pungi',
+            'pv',
+            'qiv',
+            'qpdf',
+            'ranger',
+            'recode',
+            'redis',
+            'rfkill',
+            'rpm-ostree',
+            'ruby',
+            'ruby-devel',
+            'ruby-doc',
+            'ruby-irb',
+            'rubygems',
+            'rubygems-devel',
+            'sbcl',
+            'scala',
+            'scap-workbench',
+            'scapy',
+            'scl-utils-build',
+            'screen',
+            'screenfetch',
+            'setools-console',
+            'sg3_utils',
+            'skopeo',
+            'smartmontools',
+            'snapd',
+            'socat',
+            'spec2scl',
+            'speedtest-cli',
+            'spin-kickstarts',
+            'sssd-nfs-idmap',
+            'strace',
+            'sysstat',
+            'system-storage-manager',
+            'task',
+            'tcllib',
+            'terminator',
+            'thunderbird',
+            'tilix',
+            'tilix-nautilus',
+            'tito',
+            'tlp',
+            'tlp-rdw',
+            'tmux',
+            'tpp',
+            'transmission-cli',
+            'tuna',
+            'tuned',
+            'tuned-utils',
+            'tuned-utils-systemtap',
+            'units',
+            'vagrant',
+            'vagrant-doc',
+            'vagrant-libvirt',
+            'vagrant-libvirt-doc',
+            'valgrind',
+            'vim-enhanced',
+            'virt-top',
+            'whois',
+            'wireguard-tools',
+            'wireshark-cli',
+            'xbacklight',
+            'xclip',
+            'xfsdump',
+            'xournal',
+            'xsel',
+            'ykclient',
+            'ykpers'
+          ]
+    state: installed
 
 - name: Install RPM packager packages
-  dnf: name={{ item }} state=installed
-  with_items:
-  - blender-rpm-macros
-  - erlang-rpm-macros
-  - fedmsg
-  - fedora-review
-  - fedora-review-tests
-  - firewalld-filesystem
-  - ghc-rpm-macros
-  - ghc-rpm-macros-extra
-  - ghc-srpm-macros
-  - gnat-srpm-macros
-  - go-srpm-macros
-  - golang
-  - golang-godoc
-  - golang-gotype
-  - gotags
-  - kernel-rpm-macros
-  - kf5-rpm-macros
-  - mock
-  - nodejs-packaging
-  - ocaml-srpm-macros
-  - perl-macros
-  - perl-srpm-macros
-  - python-fedmsg-meta-fedora-infrastructure
-  - python-macros
-  - rpm-apidocs
-  - rpm-build
-  - rpm-devel
-  - rpmconf
-  - rpmconf
-  - rpmdevtools
-  - rpmgrill
-  - rpmlint
-  - rpmorphan
-  - rpmreaper
-  - scl-utils-build
-  - sip-macros
-  - terminator
-  - web-assets-devel
+  dnf:
+    name: [
+          'blender-rpm-macros',
+          'erlang-rpm-macros',
+          'fedmsg',
+          'fedora-review',
+          'fedora-review-tests',
+          'firewalld-filesystem',
+          'ghc-rpm-macros',
+          'ghc-rpm-macros-extra',
+          'ghc-srpm-macros',
+          'gnat-srpm-macros',
+          'go-srpm-macros',
+          'golang',
+          'golang-godoc',
+          'golang-gotype',
+          'gotags',
+          'kernel-rpm-macros',
+          'kf5-rpm-macros',
+          'mock',
+          'nodejs-packaging',
+          'ocaml-srpm-macros',
+          'perl-macros',
+          'perl-srpm-macros',
+          'python-fedmsg-meta-fedora-infrastructure',
+          'python-macros',
+          'rpm-apidocs',
+          'rpm-build',
+          'rpm-devel',
+          'rpmconf',
+          'rpmconf',
+          'rpmdevtools',
+          'rpmgrill',
+          'rpmlint',
+          'rpmorphan',
+          'rpmreaper',
+          'scl-utils-build',
+          'sip-macros',
+          'terminator',
+          'web-assets-devel'
+          ]
+    state: installed
   when: install_packager
 
 - name: Install extra fonts
-  dnf: name={{ item }} state=installed
-  with_items:
-  - adobe-source-code-pro-fonts
-  - dejavu-sans-fonts
-  - dejavu-sans-mono-fonts
-  - dejavu-serif-fonts
-  - gnu-free-fonts-common
-  - gnu-free-mono-fonts
-  - gnu-free-sans-fonts
-  - gnu-free-serif-fonts
-  - levien-inconsolata-fonts
-  - liberation-fonts-common
-  - liberation-mono-fonts
-  - liberation-sans-fonts
-  - liberation-serif-fonts
-  - mozilla-fira-mono-fonts
-  - msimonson-anonymouspro-fonts
-  - overpass-fonts
-  - terminus-fonts
+  dnf:
+    name: [
+          'adobe-source-code-pro-fonts',
+          'dejavu-sans-fonts',
+          'dejavu-sans-mono-fonts',
+          'dejavu-serif-fonts',
+          'gnu-free-fonts-common',
+          'gnu-free-mono-fonts',
+          'gnu-free-sans-fonts',
+          'gnu-free-serif-fonts',
+          'levien-inconsolata-fonts',
+          'liberation-fonts-common',
+          'liberation-mono-fonts',
+          'liberation-sans-fonts',
+          'liberation-serif-fonts',
+          'mozilla-fira-mono-fonts',
+          'msimonson-anonymouspro-fonts',
+          'overpass-fonts',
+          'terminus-fonts'
+          ]
+    state: installed
   when: install_extra_fonts
