@@ -137,6 +137,7 @@
             'psad',
             'pssh',
             'pungi',
+            'pwgen'
             'pv',
             'qiv',
             'qpdf',
