@@ -3,10 +3,10 @@
 - name: Upgrade all packages
   dnf:
     name: "*"
-    state: latest
+    state: latest # noqa 403 This is a workstation playbook and updating your software to the latest versions is a good idea
 
 - name: Install group packages
-  dnf: 
+  dnf:
     name:
       - "@development tools"
       - "@fedora-packager"
@@ -14,7 +14,7 @@
     state: installed
 
 - name: Install extra packages
-  dnf: 
+  dnf:
     name:
     - acpi
     - android-tools
@@ -206,7 +206,7 @@
     state: installed
 
 - name: Install RPM packager packages
-  dnf: 
+  dnf:
     name:
     - blender-rpm-macros
     - erlang-rpm-macros
@@ -243,7 +243,7 @@
   when: install_packager
 
 - name: Install extra fonts
-  dnf: 
+  dnf:
     name:
     - adobe-source-code-pro-fonts
     - dejavu-sans-fonts
