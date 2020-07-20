@@ -8,7 +8,6 @@ Follow these steps to install Ansible, checkout the Fedora Workstation repo, and
 
 ```
 sudo dnf install ansible -y
-cd /tmp
 git clone https://github.com/jdoss/fedora-workstation.git /tmp/fedora-workstation
 cd fedora-workstation
 ansible-playbook setup_workstation.yml -e "local_user=yourusername local_user_email=you@example.com" --become -K

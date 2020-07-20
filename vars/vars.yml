@@ -26,6 +26,7 @@ install_spotify: true
 install_sublime_text: true
 install_vscode: true
 install_zoom: true
+install_rpmfusion: true
 
 #python3
 ansible_python_interpreter: /usr/bin/python3
