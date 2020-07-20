@@ -6,274 +6,268 @@
     state: latest
 
 - name: Install group packages
-  dnf:
-    name: [
-            '@development tools',
-            '@fedora-packager',
-            '@virtualization'
-          ]
+  dnf: 
+    name:
+      - "@development tools"
+      - "@fedora-packager"
+      - "@virtualization"
     state: installed
 
 - name: Install extra packages
-  dnf:
-    name: [
-            'acpi',
-            'aide',
-            'ansible-lint',
-            'appliance-tools',
-            'arpwatch',
-            'asciidoc',
-            'asciidoc-doc',
-            'aspell',
-            'aspell-en',
-            'autoconf',
-            'autofs',
-            'automake',
-            'awscli',
-            'binwalk',
-            'bpython',
-            'buildah',
-            'cmake',
-            'collectl',
-            'conntrack-tools',
-            'copr-cli',
-            'createrepo',
-            'createrepo_c-devel',
-            'crun',
-            'dnf-plugins-extras-common',
-            'dnf-plugins-extras-kickstart',
-            'dnf-plugins-extras-repoclosure',
-            'dnf-plugins-extras-repograph',
-            'dnf-plugins-extras-show-leaves',
-            'dnf-plugins-extras-tracer',
-            'doge',
-            'doxygen',
-            'dstat',
-            'duplicity',
-            'elixir',
-            'fail2ban',
-            'fdupes',
-            'fedfind',
-            'fedpkg',
-            'feh',
-            'figlet',
-            'firewalld',
-            'flatpak-builder',
-            'fwsnort',
-            'gcc-c++',
-            'gimp',
-            'glances',
-            'gnome-shell-extension-gpaste',
-            'gnome-tweak-tool',
-            'gpaste',
-            'gpaste-devel',
-            'gpaste-ui',
-            'heimdall',
-            'htop',
-            'httpie',
-            'hub',
-            'inkscape',
-            'inotify-tools',
-            'intltool',
-            'inxi',
-            'iotop',
-            'iptraf-ng',
-            'jq',
-            'kernel-devel',
-            'letsencrypt',
-            'lftp',
-            'libguestfs',
-            'libguestfs-tools',
-            'libguestfs-tools-c',
-            'libguestfs-xfs',
-            'libicns-utils',
-            'libmtp-examples',
-            'libnfs',
-            'libnfsidmap',
-            'libsemanage-devel',
-            'libtaskotron',
-            'libtool',
-            'libvirt',
-            'libvirt-sandbox',
-            'livecd-tools',
-            'liveusb-creator',
-            'lm_sensors',
-            'lorax',
-            'lshw',
-            'lsscsi',
-            'ltrace',
-            'lynx',
-            'meld',
-            'mosh  ',
-            'mysql-devel',
-            'ncftp',
-            'nfs-utils',
-            'ngrep',
-            'nmap',
-            'nmon',
-            'nodejs',
-            'nodejs-docs',
-            'nodejs-grunt',
-            'npm',
-            'openscap',
-            'openscap-containers',
-            'openscap-daemon',
-            'openscap-scanner',
-            'openscap-utils',
-            'openssl-devel',
-            'pandoc',
-            'pass',
-            'patchutils',
-            'pavucontrol',
-            'pavumeter',
-            'pcp',
-            'pcp-doc',
-            'pcp-gui',
-            'perf',
-            'picocom',
-            'pinta',
-            'postfix',
-            'postgresql-devel',
-            'psad',
-            'pssh',
-            'pungi',
-            'pwgen'
-            'pv',
-            'qiv',
-            'qpdf',
-            'ranger',
-            'recode',
-            'redis',
-            'rfkill',
-            'rpm-ostree',
-            'ruby',
-            'ruby-devel',
-            'ruby-doc',
-            'ruby-irb',
-            'rubygems',
-            'rubygems-devel',
-            'sbcl',
-            'scala',
-            'scap-workbench',
-            'scapy',
-            'scl-utils-build',
-            'screen',
-            'screenfetch',
-            'setools-console',
-            'sg3_utils',
-            'skopeo',
-            'smartmontools',
-            'snapd',
-            'socat',
-            'spec2scl',
-            'speedtest-cli',
-            'spin-kickstarts',
-            'sssd-nfs-idmap',
-            'strace',
-            'sysstat',
-            'system-storage-manager',
-            'task',
-            'tcllib',
-            'terminator',
-            'thunderbird',
-            'tilix',
-            'tilix-nautilus',
-            'tito',
-            'tlp',
-            'tlp-rdw',
-            'tmux',
-            'tpp',
-            'transmission-cli',
-            'tuna',
-            'tuned',
-            'tuned-utils',
-            'tuned-utils-systemtap',
-            'units',
-            'vagrant',
-            'vagrant-doc',
-            'vagrant-libvirt',
-            'vagrant-libvirt-doc',
-            'valgrind',
-            'vim-enhanced',
-            'virt-top',
-            'whois',
-            'wireguard-tools',
-            'wireshark-cli',
-            'xbacklight',
-            'xclip',
-            'xfsdump',
-            'xournal',
-            'xsel',
-            'ykclient',
-            'ykpers'
-          ]
+  dnf: 
+    name:
+    - acpi
+    - android-tools
+    - ansible-lint
+    - appliance-tools
+    - arpwatch
+    - asciidoc
+    - asciidoc-doc
+    - aspell
+    - aspell-en
+    - autoconf
+    - autofs
+    - automake
+    - awscli
+    - binwalk
+    - cmake
+    - collectl
+    - conntrack-tools
+    - copr-cli
+    - createrepo
+    - crun
+    - dnf-plugins-extras-common
+    - dnf-plugins-extras-kickstart
+    - dnf-plugins-extras-repoclosure
+    - dnf-plugins-extras-repograph
+    - dnf-plugins-extras-show-leaves
+    - dnf-plugins-extras-tracer
+    - dstat
+    - elixir
+    - fail2ban
+    - fdupes
+    - fedfind
+    - fedpkg
+    - feh
+    - figlet
+    - firewalld
+    - firewalld-filesystem
+    - flatpak-builder
+    - fwsnort
+    - gcc-c++
+    - gdb-doc
+    - glances
+    - gnome-shell-extension-gpaste
+    - gnome-tweak-tool
+    - golang
+    - golang-godoc
+    - golang-gotype
+    - gotags
+    - gpaste
+    - heimdall
+    - htop
+    - httpie
+    - hub
+    - inotify-tools
+    - intltool
+    - inxi
+    - iotop
+    - iptraf-ng
+    - jq
+    - jython
+    - kernel-devel
+    - kismet
+    - kismet-plugins
+    - letsencrypt
+    - lftp
+    - libguestfs
+    - libguestfs-tools
+    - libguestfs-tools-c
+    - libguestfs-xfs
+    - libicns-utils
+    - libmtp-examples
+    - libnfs
+    - libnfsidmap
+    - libsemanage-devel
+    - libtaskotron
+    - libtool
+    - libvirt
+    - libvirt-sandbox
+    - livecd-tools
+    - liveusb-creator
+    - lm_sensors
+    - lorax
+    - lshw
+    - lsscsi
+    - ltrace
+    - lynx
+    - mysql-devel
+    - ncftp
+    - nfs-utils
+    - ngrep
+    - nmap
+    - nmon
+    - nodejs
+    - npm
+    - openscap
+    - openscap-containers
+    - openscap-daemon
+    - openscap-scanner
+    - openscap-utils
+    - openssl-devel
+    - pandoc
+    - pass
+    - patchutils
+    - pavucontrol
+    - pavumeter
+    - pcp
+    - pcp-doc
+    - pcp-gui
+    - perf
+    - picocom
+    - pinta
+    - postfix
+    - postgresql-devel
+    - psad
+    - pssh
+    - pv
+    - pykickstart
+    - pylint
+    - pyp2rpm
+    - pypy
+    - pytest
+    - python3-firewall
+    - python3-virtualenv
+    - qiv
+    - qpdf
+    - ranger
+    - recode
+    - redis
+    - rfkill
+    - rpm-ostree
+    - ruby
+    - ruby-devel
+    - ruby-doc
+    - ruby-irb
+    - rubygems
+    - rubygems-devel
+    - runc
+    - sbcl
+    - scala
+    - scap-workbench
+    - scapy
+    - screen
+    - screenfetch
+    - setools-console
+    - sg3_utils
+    - smartmontools
+    - snapd
+    - socat
+    - spec2scl
+    - speedtest-cli
+    - spin-kickstarts
+    - sssd-nfs-idmap
+    - strace
+    - sysstat
+    - system-storage-manager
+    - task
+    - tcllib
+    - terminator
+    - testcloud
+    - testdisk
+    - thunderbird
+    - tito
+    - tlp
+    - tlp-rdw
+    - tmux
+    - tpp
+    - transmission-cli
+    - tuna
+    - tuned
+    - tuned-utils
+    - tuned-utils-systemtap
+    - units
+    - vagrant
+    - vagrant-doc
+    - vagrant-libvirt
+    - vagrant-libvirt-doc
+    - valgrind
+    - vim-enhanced
+    - virt-top
+    - whois
+    - wireshark-cli
+    - xbacklight
+    - xclip
+    - xfsdump
+    - xournal
+    - xsel
+    - ykclient
+    - ykpers
     state: installed
 
 - name: Install RPM packager packages
-  dnf:
-    name: [
-          'blender-rpm-macros',
-          'erlang-rpm-macros',
-          'fedmsg',
-          'fedora-review',
-          'fedora-review-tests',
-          'firewalld-filesystem',
-          'ghc-rpm-macros',
-          'ghc-rpm-macros-extra',
-          'ghc-srpm-macros',
-          'gnat-srpm-macros',
-          'go-srpm-macros',
-          'golang',
-          'golang-godoc',
-          'golang-gotype',
-          'gotags',
-          'kernel-rpm-macros',
-          'kf5-rpm-macros',
-          'mock',
-          'nodejs-packaging',
-          'ocaml-srpm-macros',
-          'perl-macros',
-          'perl-srpm-macros',
-          'python-fedmsg-meta-fedora-infrastructure',
-          'python-macros',
-          'rpm-apidocs',
-          'rpm-build',
-          'rpm-devel',
-          'rpmconf',
-          'rpmconf',
-          'rpmdevtools',
-          'rpmgrill',
-          'rpmlint',
-          'rpmorphan',
-          'rpmreaper',
-          'scl-utils-build',
-          'sip-macros',
-          'terminator',
-          'web-assets-devel'
-          ]
+  dnf: 
+    name:
+    - blender-rpm-macros
+    - erlang-rpm-macros
+    - fedmsg
+    - fedora-review
+    - fedora-review-tests
+    - ghc-rpm-macros
+    - ghc-rpm-macros-extra
+    - ghc-srpm-macros
+    - gnat-srpm-macros
+    - go-srpm-macros
+    - kernel-rpm-macros
+    - kf5-rpm-macros
+    - mock
+    - nodejs-packaging
+    - ocaml-srpm-macros
+    - perl-macros
+    - perl-srpm-macros
+    - python-fedmsg-meta-fedora-infrastructure
+    - rpm-apidocs
+    - rpm-build
+    - rpm-devel
+    - rpmconf
+    - rpmconf
+    - rpmdevtools
+    - rpmgrill
+    - rpmlint
+    - rpmorphan
+    - rpmreaper
+    - scl-utils-build
+    - sip-macros
+    - web-assets-devel
     state: installed
   when: install_packager
 
 - name: Install extra fonts
-  dnf:
-    name: [
-          'adobe-source-code-pro-fonts',
-          'dejavu-sans-fonts',
-          'dejavu-sans-mono-fonts',
-          'dejavu-serif-fonts',
-          'gnu-free-fonts-common',
-          'gnu-free-mono-fonts',
-          'gnu-free-sans-fonts',
-          'gnu-free-serif-fonts',
-          'levien-inconsolata-fonts',
-          'liberation-fonts-common',
-          'liberation-mono-fonts',
-          'liberation-sans-fonts',
-          'liberation-serif-fonts',
-          'mozilla-fira-mono-fonts',
-          'msimonson-anonymouspro-fonts',
-          'overpass-fonts',
-          'terminus-fonts'
-          ]
-    state: installed
+  dnf: 
+    name:
+    - adobe-source-code-pro-fonts
+    - dejavu-sans-fonts
+    - dejavu-sans-mono-fonts
+    - dejavu-serif-fonts
+    - gnu-free-fonts-common
+    - gnu-free-mono-fonts
+    - gnu-free-sans-fonts
+    - gnu-free-serif-fonts
+    - levien-inconsolata-fonts
+    - liberation-fonts-common
+    - liberation-mono-fonts
+    - liberation-sans-fonts
+    - liberation-serif-fonts
+    - mozilla-fira-mono-fonts
+    - msimonson-anonymouspro-fonts
+    - overpass-fonts
+    - terminus-fonts
+  state: installed
   when: install_extra_fonts
+
+- name: Install RPMFusion Packages
+  dnf:
+    name:
+      - ffmpeg
+    state: installed
+  when: install_rpmfusion

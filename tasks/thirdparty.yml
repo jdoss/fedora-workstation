@@ -15,6 +15,7 @@
   dnf:
     name: spotify-client
     state: present
+  ignore_errors: yes
   when: install_spotify
 
 - name: Install Sublime Text
@@ -49,6 +50,12 @@
     channel: beta
   when: install_bitwarden
 
+- name: Install Slack
+  dnf:
+    name:
+      - slack
+    state: present
+  when: slack_installed.stat.exists == False
 
 
 - block:

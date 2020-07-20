@@ -11,6 +11,9 @@
         state: present
       when: chrome_installed.stat.exists == False
 
+    - name: Enable Google Chrome repo
+      command: dnf config-manager --set-enabled google-chrome 
+  
   when: install_chrome
 
 - block:
@@ -34,7 +37,7 @@
       register: fedora_spotify_installed
 
     - name: Install fedora-spotify repo
-      command: dnf config-manager --add-repo=http://negativo17.org/repos/fedora-spotify.repo
+      command: dnf config-manager --add-repo=https://negativo17.org/repos/fedora-spotify.repo
       when: fedora_spotify_installed.stat.exists == False
 
   when: install_spotify
@@ -83,7 +86,7 @@
     - name: Import Slack GPG key
       rpm_key:
         state: present
-        key: https://packages.microsoft.com/keys/microsoft.asc
+        key: https://slack.com/gpg/slack_pubkey_2019.gpg
 
     - name: Enable slack repo
       yum_repository:
@@ -98,3 +101,14 @@
       when: fedora_slack_installed.stat.exists == False
 
   when: install_slack
+
+- block: 
+
+   - name: 
+     dnf:
+       name:
+         - "http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
+         - "http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
+       state: present
+  
+  when: install_rpmfusion
