@@ -9,11 +9,13 @@
       dnf:
         name: 'https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm'
         state: present
-      when: chrome_installed.stat.exists == False
+      when: not chrome_installed.stat.exists
 
     - name: Enable Google Chrome repo
-      command: dnf config-manager --set-enabled google-chrome 
-  
+      command: dnf config-manager --set-enabled google-chrome
+      args:
+        warn: false
+
   when: install_chrome
 
 - block:
@@ -26,8 +28,7 @@
       dnf:
         name: 'https://dl.google.com/linux/direct/google-talkplugin_current_x86_64.rpm'
         state: present
-      when: googletalk_installed.stat.exists == False
-
+      when: not googletalk_installed.stat.exists
   when: install_googletalk
 
 - block:
@@ -38,7 +39,7 @@
 
     - name: Install fedora-spotify repo
       command: dnf config-manager --add-repo=https://negativo17.org/repos/fedora-spotify.repo
-      when: fedora_spotify_installed.stat.exists == False
+      when: not fedora_spotify_installed.stat.exists
 
   when: install_spotify
 
@@ -50,7 +51,7 @@
 
     - name: Install sublime-text repo
       command: dnf config-manager --add-repo https://download.sublimetext.com/rpm/stable/x86_64/sublime-text.repo
-      when: fedora_sublime_text_installed.stat.exists == False
+      when: not fedora_sublime_text_installed.stat.exists
 
   when: install_sublime_text
 
@@ -73,7 +74,7 @@
         baseurl: 'https://packages.microsoft.com/yumrepos/vscode'
         gpgkey: 'https://packages.microsoft.com/keys/microsoft.asc'
         gpgcheck: yes
-      when: fedora_vscode_installed.stat.exists == False
+      when: not fedora_vscode_installed.stat.exists
 
   when: install_vscode
 
@@ -98,17 +99,30 @@
         metadata_expire: '300'
         sslverify: yes
         sslcacert: /etc/pki/tls/certs/ca-bundle.crt
-      when: fedora_slack_installed.stat.exists == False
+      when: not fedora_slack_installed.stat.exists
 
   when: install_slack
 
-- block: 
+- block:
 
-   - name: 
-     dnf:
-       name:
-         - "http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
-         - "http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
-       state: present
-  
+    - name: Check for RPM Fusion Free repo
+      stat: path=/etc/yum.repos.d/rpmfusion-free.repo
+      register: fedora_rpm_fusion_free_installed
+
+    - name: Check for RPM Fusion Nonfree repo
+      stat: path=/etc/yum.repos.d/rpmfusion-nonfree.repo
+      register: fedora_rpm_fusion_nonfree_installed
+
+    - name: Install RPM Fusion repo rpms
+      dnf:
+        name: "http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
+        state: present
+      when: not fedora_rpm_fusion_free_installed.stat.exists
+
+    - name: Install RPM Fusion Nonfree repo rpms
+      dnf:
+        name: "http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
+        state: present
+      when: not fedora_rpm_fusion_nonfree_installed.stat.exists
+
   when: install_rpmfusion

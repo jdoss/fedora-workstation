@@ -1,4 +1,4 @@
---- 
+---
 
 - name: Create Vagrant group
   group:
@@ -35,4 +35,4 @@
     group: "{{ local_user }}"
 
 - name: Run restorecon on /home/{{ local_user }}/.cert
-  command: /usr/sbin/restorecon -R -v /home/{{ local_user }}/.cert
+  command: /usr/sbin/restorecon -R -v /home/{{ local_user }}/.cert # noqa 301
