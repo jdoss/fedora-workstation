@@ -13,6 +13,8 @@
 
     - name: Enable Google Chrome repo
       command: dnf config-manager --set-enabled google-chrome
+      args:
+        warn: false
 
   when: install_chrome
 
@@ -103,11 +105,24 @@
 
 - block:
 
-   - name: Install RPMFusion repo rpms
-     dnf:
-       name:
-         - "http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
-         - "http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
-       state: present
+    - name: Check for RPM Fusion Free repo
+      stat: path=/etc/yum.repos.d/rpmfusion-free.repo
+      register: fedora_rpm_fusion_free_installed
+
+    - name: Check for RPM Fusion Nonfree repo
+      stat: path=/etc/yum.repos.d/rpmfusion-nonfree.repo
+      register: fedora_rpm_fusion_nonfree_installed
+
+    - name: Install RPM Fusion repo rpms
+      dnf:
+        name: "http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_distribution_version }}.noarch.rpm"
+        state: present
+      when: not fedora_rpm_fusion_free_installed.stat.exists
+
+    - name: Install RPM Fusion Nonfree repo rpms
+      dnf:
+        name: "http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_distribution_version }}.noarch.rpm"
+        state: present
+      when: not fedora_rpm_fusion_nonfree_installed.stat.exists
 
   when: install_rpmfusion

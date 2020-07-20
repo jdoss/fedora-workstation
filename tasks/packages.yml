@@ -262,7 +262,7 @@
     - msimonson-anonymouspro-fonts
     - overpass-fonts
     - terminus-fonts
-  state: installed
+    state: installed
   when: install_extra_fonts
 
 - name: Install RPMFusion Packages
