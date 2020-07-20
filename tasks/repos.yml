@@ -50,3 +50,51 @@
       when: fedora_sublime_text_installed.stat.exists == False
 
   when: install_sublime_text
+
+- block:
+
+    - name: Check for vscode repo
+      stat: path=/etc/yum.repos.d/vscode.repo
+      register: fedora_vscode_installed
+
+    - name: Import Microsoft GPG key
+      rpm_key:
+        state: present
+        key: https://packages.microsoft.com/keys/microsoft.asc
+
+    - name: Enable vscode repo
+      yum_repository:
+        name: code
+        description: Visual Studio Code
+        file: vscode
+        baseurl: 'https://packages.microsoft.com/yumrepos/vscode'
+        gpgkey: 'https://packages.microsoft.com/keys/microsoft.asc'
+        gpgcheck: yes
+      when: fedora_vscode_installed.stat.exists == False
+
+  when: install_vscode
+
+- block:
+
+    - name: Check for slack repo
+      stat: path=/etc/yum.repos.d/slack.repo
+      register: fedora_slack_installed
+
+    - name: Import Slack GPG key
+      rpm_key:
+        state: present
+        key: https://packages.microsoft.com/keys/microsoft.asc
+
+    - name: Enable slack repo
+      yum_repository:
+        name: slack
+        description: Slack
+        baseurl: 'https://packagecloud.io/slacktechnologies/slack/fedora/21/$basearch'
+        gpgkey: 'https://slack.com/gpg/slack_pubkey_2019.gpg'
+        gpgcheck: yes
+        metadata_expire: '300'
+        sslverify: yes
+        sslcacert: /etc/pki/tls/certs/ca-bundle.crt
+      when: fedora_slack_installed.stat.exists == False
+
+  when: install_slack

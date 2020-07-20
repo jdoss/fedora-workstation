@@ -1,71 +1,5 @@
 ---
 
-- name: Create libvirt storage directory
-  file:
-    path: "{{ libvirt_storage_path }}"
-    state: directory
-    mode: 0711
-
-- name: Set fcontext virt_image_t on {{ libvirt_storage_path }}
-  sefcontext:
-    target: "{{ libvirt_storage_path }}(/.*)?"
-    setype: virt_image_t
-    state: present
-  register: libvirt_storage_path_filecontext
-
-- name: Run restorecon on {{ libvirt_storage_path }}
-  shell: "/usr/sbin/restorecon -R -v {{ libvirt_storage_path }}"
-  when: libvirt_storage_path_filecontext.changed
-
-- name: Run virsh pool-list
-  command: /usr/bin/virsh pool-list
-
-- name: Get virt_pool facts
-  virt_pool: command=facts
-
-- block:
-
-  - name: Define default pool from template
-    virt_pool:
-      command: define
-      name: default
-      xml: '{{ lookup("template", "libvirt_default_storage_pool.xml.j2") }}'
-
-  - name: Create default pool
-    virt_pool:
-      command: create
-      name: default
-
-  - name: Set default pool to active
-    virt_pool:
-      state: active
-      name: default
-
-  - name: Set default pool to autostart
-    virt_pool:
-      autostart: yes
-      name: default
-
-  - name: Stop default pool
-    virt_pool:
-      command: destroy
-      name: default
-    when: ansible_libvirt_pools.default.path is defined
-
-  - name: Set default pool to inactive
-    virt_pool:
-      state: inactive
-      name: default
-    when: ansible_libvirt_pools.default.path is defined
-
-  - name: Undefine default pool
-    virt_pool:
-      command: undefine
-      name: default
-    when: ansible_libvirt_pools.default.path is defined
-
-  when: "ansible_libvirt_pools.default.path != libvirt_storage_path or ansible_libvirt_pools.default.path is not defined"
-
 - block:
 
   - name: Allow vagrant group to control NFS
@@ -87,3 +21,20 @@
     - mountd
 
   when: enable_vagrant_nfs
+
+- name: Enable net.ipv4.ip_forward
+  sysctl:
+    name: net.ipv4.ip_forward
+    value: '1'
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- name: Set fs.inotify.max_user_watches to 524288
+  sysctl:
+    name: fs.inotify.max_user_watches
+    value: '524288'
+    sysctl_set: yes
+    state: present
+    reload: yes
+  when: install_vscode

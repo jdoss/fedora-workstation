@@ -23,19 +23,33 @@
     state: present
   when: install_sublime_text
 
-- block:
-
-    - name: Check for Slack
-      stat: path=/usr/bin/slack
-      register: slack_installed
-
-    - name: Install Slack RPM
-      dnf:
-        name: 'https://downloads.slack-edge.com/linux_releases/slack-3.0.2-0.1.fc21.x86_64.rpm'
-        state: present
-      when: slack_installed.stat.exists == False
-
+- name: Install Slack
+  dnf:
+    name: slack
+    state: present
   when: install_slack
+
+- name: Install VS Code
+  dnf:
+    name: code
+    state: present
+  when: install_vscode
+
+- name: Install Authy
+  snap:
+    name: authy
+    channel: beta
+  when: install_authy
+
+- name: Install Bitwarden and Bitwarden CLI
+  snap:
+    name:
+      - bitwarden
+      - bw
+    channel: beta
+  when: install_bitwarden
+
+
 
 - block:
 
